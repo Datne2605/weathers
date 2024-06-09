@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -34,15 +35,23 @@ class DetailPage extends StatelessWidget {
             appBar: AppBar(
               backgroundColor: Colors.transparent,
               centerTitle: false,
-              title: const Row(
+              title:  Row(
                 children: [
-                  Icon(CupertinoIcons.location),
-                  SizedBox( width: 15),
-                  Text(
-                    'Ho Chi Minh City',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white),) ,
+                  const Icon(CupertinoIcons.location),
+                  const SizedBox( width: 15),
+                  AnimatedTextKit (
+                    repeatForever: true,
+                    animatedTexts: [
+                      TyperAnimatedText(
+                      '${context.read<WeatherProvider>().nameCity} City',
+                      textStyle: const TextStyle(
+                        fontSize: 20,
+                        color: Colors.white
+                        ),
+                        speed: const Duration(milliseconds: 100),
+                        ),
+                    ]
+                  ) ,
                 ],
               ),
               actions: const [

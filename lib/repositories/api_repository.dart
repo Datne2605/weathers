@@ -22,11 +22,11 @@ class ApiRepository {
    } 
    }
 
- static Future<List<WeatherDetail>> callApiGetWeatherDetail () async {
+ static Future<List<WeatherDetail>> callApiGetWeatherDetail (Position? position) async {
    try {
     final dio = Dio();
     final res = await dio.get(
-      'https://api.openweathermap.org/data/2.5/forecast?lat=10,77585&lon=106,75467&units=metric&appid=${MyKey.api_token}'); 
+      'https://api.openweathermap.org/data/2.5/forecast?lat=${position?.latitude}&lon=${position?.longitude}&units=metric&appid=${MyKey.api_token}'); 
 
     List data = res.data['list'];
      List <WeatherDetail> result =
